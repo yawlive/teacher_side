@@ -66,10 +66,10 @@ const Trequest = () => {
                     </div>
 
                     <div className="flex justify-between">
-                      <button className="bg-green-200 text-green-800 py-2 px-4 rounded-md hover:bg-green-600">
+                      <button className="bg-slate-200 text-dark-purple py-2 px-4 rounded-md hover:bg-slate-200">
                         Accept
                       </button>
-                      <button className="bg-red-200 text-red-800 py-2 px-4 rounded-md hover:bg-red-600">
+                      <button className="bg-dark-purple text-slate-200 py-2 px-4 rounded-md hover:bg-red-600">
                         Reject
                       </button>
                     </div>

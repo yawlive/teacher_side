@@ -1,34 +1,43 @@
 import React, { useState } from 'react';
-import { FaUserGraduate, FaChevronCircleLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import Studentslists from '../pages/teacher/Studentslist';
 import { RiMenuFill } from "react-icons/ri";
-import ToolTip from './ToolTip';
 
-const Sidebar = ({ Menus, sidebarcolor, textcolor, iconscolor , active }) => {
+const Sidebar = ({ Menus, sidebarcolor, textcolor, iconscolor }) => {
   const [open, setOpen] = useState(true);
 
   return (
-    <div className="flex">
+    <div className="relative ">
+    
+      {open && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          onClick={() => setOpen(false)}
+        ></div>
+      )}
+
+      {/* Sidebar Container */}
       <div
         className={`${
-          open ? "w-72" : "w-20"
-        } ${sidebarcolor} h-screen p-5 pt-8 relative duration-300 `}
+          open ? "left-0" : "-left-72"
+        } ${sidebarcolor} fixed top-0 h-screen p-5 pt-8 z-50 w-72 duration-300 lg:relative lg:left-0`}
       >
         {/* Toggle Button */}
-
         <RiMenuFill
-          className={`absolute cursor-pointer right-6 top-15 w-7 h-11  rounded-full ${!open}`}
+          className={`${
+            open ? "right-3 top-8 " : "-right-8 top-7 "
+          }absolute cursor-pointer  w-7 h-7 rounded-full lg:hidden`}
           style={{
             color: textcolor,
           }}
           onClick={() => setOpen(!open)}
         />
-        
+
         {/* Logo */}
         <div className="flex gap-x-4 items-center">
           <h1
-            className={`origin-left  text-3xl font-extrabold duration-200 ${!open && "scale-0"}`}
+            className={`origin-left text-3xl font-extrabold duration-200 ${
+              !open 
+            }`}
             style={{
               color: textcolor,
             }}
@@ -36,7 +45,7 @@ const Sidebar = ({ Menus, sidebarcolor, textcolor, iconscolor , active }) => {
             Edulink
           </h1>
         </div>
-        
+
         {/* Menu List */}
         <ul className="pt-6">
           {Menus.map((Menu, index) => (
@@ -56,10 +65,11 @@ const Sidebar = ({ Menus, sidebarcolor, textcolor, iconscolor , active }) => {
                     color: iconscolor,
                   }}
                 >
-                  <ToolTip color='rgba(255,255,255,0.17)' text={Menu.title}>
-                  {Menu.icon}</ToolTip>
+                  {Menu.icon}
                 </span>
-                <span className={`${!open && "hidden"} origin-left duration-200 `}>
+                <span
+                  className={`${!open} origin-left duration-200`}
+                >
                   {Menu.title}
                 </span>
               </Link>
